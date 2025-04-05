@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>E-Learning Platform</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
+
+      /* Floating Chat Button */
+      .chat-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 60px;
+        height: 60px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        font-size: 24px;
+      }
+
+      .chat-button:hover {
+        background-color: #0056b3;
+      }
+
+      /* Chatbox Window */
+      .chatbox {
+        position: fixed;
+        bottom: 90px;
+        right: 20px;
+        width: 300px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        display: none; /* Hidden by default */
+        flex-direction: column;
+      }
+
+      /* Chatbox Header */
+      .chatbox-header {
+        background-color: #007bff;
+        color: white;
+        padding: 10px;
+        text-align: center;
+        border-radius: 10px 10px 0 0;
+        font-weight: bold;
+      }
+
+      /* Chatbox Messages Area */
+      .chatbox-messages {
+        height: 200px;
+        overflow-y: auto;
+        padding: 10px;
+        font-size: 14px;
+      }
+
+      /* Chatbox Input */
+      .chatbox-input {
+        display: flex;
+        border-top: 1px solid #ddd;
+      }
+
+      .chatbox-input input {
+        flex: 1;
+        padding: 10px;
+        border: none;
+        border-radius: 0 0 0 10px;
+        outline: none;
+      }
+
+      .chatbox-input button {
+        background: #007bff;
+        color: white;
+        border: none;
+        padding: 10px;
+        border-radius: 0 0 10px 0;
+        cursor: pointer;
+      }
+
+      .chatbox-input button:hover {
+        background: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <div class="container">
+        <a class="navbar-brand" href="#"
+          >LearnSphere
+          <i
+            class="fas fa-user-graduate"
+            style="font-size: 48px; color: rgb(246, 246, 243)"
+          ></i>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="#"
+                data-bs-toggle="modal"
+                data-bs-target="#loginModal"
+                >Login</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="#"
+                data-bs-toggle="modal"
+                data-bs-target="#registerModal"
+                >Register</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!--chat-bot-start-->
+    <!-- Floating Chat Button -->
+    <button style="z-index: 3" class="chat-button" onclick="toggleChatbox()">
+      💬
+    </button>
+
+    <!-- Chatbox Window -->
+    <div style="z-index: 3" class="chatbox" id="chatbox">
+      <div class="chatbox-header">AI Chatbot (Instructor)</div>
+      <div class="chatbox-messages" id="chatbox-messages">
+        <p><strong>Instructor:</strong> Hi! How can I help you?</p>
+      </div>
+      <div class="chatbox-input">
+        <input
+          type="text"
+          id="chat-input"
+          placeholder="Type a message..."
+          onkeypress="handleKeyPress(event)"
+        />
+        <button onclick="sendMessage()">➤</button>
+      </div>
+    </div>
+
+    <!--chat-bot-end-->
+
+    <!-- Hero Section -->
+    <div class="hero-section py-5 text-center">
+      <div class="container">
+        <h1>Welcome to E-Learning Platform</h1>
+        <p class="lead">Empowering Education Through Technology</p>
+        <button
+          class="btn btn-primary btn-lg"
+          data-bs-toggle="modal"
+          data-bs-target="#loginModal"
+        >
+          Get Started
+        </button>
+      </div>
+    </div>
+
+    <!-- Features Section -->
+    <section class="features py-5">
+      <div class="container">
+        <h2 class="text-center mb-4">Our Portals</h2>
+        <div class="row">
+          <div class="col-md-4 mb-4">
+            <div class="card h-100">
+              <div class="card-body text-center">
+                <a
+                  href="#"
+                  class="text-decoration-none"
+                  data-bs-toggle="modal"
+                  data-bs-target="#loginModal"
+                >
+                  <i class="fas fa-book-reader fa-3x mb-3 text-primary"></i>
+                  <h5 class="card-title">Administrative Portal</h5>
+                  <p class="card-text">Manage and Monitor Platform</p>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="card h-100">
+              <div class="card-body text-center">
+                <a
+                  href="#"
+                  class="text-decoration-none"
+                  data-bs-toggle="modal"
+                  data-bs-target="#loginModal"
+                >
+                  <i class="fas fa-users fa-3x mb-3 text-primary"></i>
+                  <h5 class="card-title">Teacher Portal</h5>
+                  <p class="card-text">Teach and Engage Students</p>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="card h-100">
+              <div class="card-body text-center">
+                <a
+                  href="#"
+                  class="text-decoration-none"
+                  data-bs-toggle="modal"
+                  data-bs-target="#loginModal"
+                >
+                  <i class="fas fa-chart-line fa-3x mb-3 text-primary"></i>
+                  <h5 class="card-title">Learner Portal</h5>
+                  <p class="card-text">Learn and Grow with Us</p>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Login</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form id="loginForm">
+              <div class="mb-3">
+                <label for="loginEmail" class="form-label">Email address</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="loginEmail"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="loginPassword" class="form-label">Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="loginPassword"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <select class="form-select" id="loginRole">
+                  <option value="student">Learner</option>
+                  <option value="faculty">Teacher</option>
+                  <option value="admin">Administrator</option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary w-100">Login</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal fade" id="registerModal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Register</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form id="registerForm">
+              <div class="mb-3">
+                <label for="registerName" class="form-label">Full Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="registerName"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="registerEmail" class="form-label"
+                  >Email address</label
+                >
+                <input
+                  type="email"
+                  class="form-control"
+                  id="registerEmail"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="registerPassword" class="form-label"
+                  >Password</label
+                >
+                <input
+                  type="password"
+                  class="form-control"
+                  id="registerPassword"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <select class="form-select" id="registerRole">
+                  <option value="student">Learner</option>
+                  <option value="faculty">Teacher</option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary w-100">
+                Register
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const kanan_button = document.getElementById("kanan-button");
+      kanan_button.addEventListener("click", () => {});
+    </script>
+    <div
+      id="kanan-button"
+      style="
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      "
+    >
+      <a href="./ai_page.html">
+        <button
+          style="
+            border: none;
+            box-shadow: inset;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 10px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 500;
+          "
+        >
+          AI COURSE RECOMMENDATION
+        </button>
+      </a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="custom-footer">
+      <div class="container">
+        <div class="row mb-2">
+          <div class="col-md-6 mb-2">
+            <h6 class="text-uppercase mb-1">About Us</h6>
+            <p class="small mb-0">
+              We provide quality education through our innovative and
+              user-friendly e-learning platform.
+            </p>
+          </div>
+          <div class="col-md-6 mb-2">
+            <h6 class="text-uppercase mb-1">Contact</h6>
+            <p class="small mb-0">
+              <i class="fas fa-envelope me-2"></i>support@elearning.com <br /><i
+                class="fas fa-phone me-2"
+              ></i
+              >(123) 456-7890
+            </p>
+          </div>
+        </div>
+
+        <div class="row border-top pt-2">
+          <div class="col-md-6 text-center text-md-start">
+            <p class="mb-0 small">
+              &copy; 2025 LearnSphere All rights reserved
+            </p>
+          </div>
+          <div class="col-md-6 text-center text-md-end">
+            <a href="https://www.facebook.com/" class="footer-link me-2"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a href="https://www.x.com/" class="footer-link me-2"
+              ><i class="fab fa-twitter"></i
+            ></a>
+            <a href="https://www.linkedin.com/" class="footer-link me-2"
+              ><i class="fab fa-linkedin-in"></i
+            ></a>
+            <a href="https://www.instagram.com/" class="footer-link"
+              ><i class="fab fa-instagram"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Font Awesome CDN (Add this in <head> if not already included) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,202 @@
+/* Global Styles */
+:root {
+    --primary-color: #123458;
+    --secondary-color: #D4C9BE;
+    --background-color: #F1EFEC;
+    --text-color: #030303;
+    --light-text: #F1EFEC;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(rgba(18, 52, 88, 0.1), rgba(18, 52, 88, 0.1)), url('../images/hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 100px 0;
+    margin-bottom: 30px;
+}
+
+.hero-section h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+}
+
+/* Features Section */
+.features .card {
+    transition: transform 0.3s ease;
+    border: none;
+    box-shadow: 0 4px 6px rgba(3, 3, 3, 0.1);
+    background-color: #fff;
+}
+
+.features .card:hover {
+    transform: translateY(-5px);
+}
+
+.features .card-body {
+    padding: 2rem;
+}
+
+/* Navigation */
+.navbar {
+    background-color: var(--primary-color) !important;
+    box-shadow: 0 2px 4px rgba(3, 3, 3, 0.1);
+}
+
+.navbar-brand {
+    font-weight: bold;
+    color: var(--light-text) !important;
+}
+
+.nav-link {
+    color: var(--light-text) !important;
+}
+
+/* Forms */
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(18, 52, 88, 0.25);
+}
+
+/* Modal */
+.modal-content {
+    border-radius: 10px;
+    background-color: var(--background-color);
+}
+
+.modal-header {
+    background-color: var(--primary-color);
+    color: var(--light-text);
+    border-radius: 10px 10px 0 0;
+}
+
+.btn-close {
+    filter: brightness(0) invert(1);
+}
+
+/* Footer */
+.custom-footer {
+    background-color: var(--primary-color);
+    color: var(--light-text);
+    padding: 1.5rem 0;
+    margin-top: 50px;
+}
+
+.custom-footer h6,
+.custom-footer p,
+.custom-footer .small {
+    color: var(--light-text);
+}
+
+.custom-footer .border-top {
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.custom-footer .footer-link {
+    color: var(--light-text);
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+.custom-footer .footer-link:hover {
+    color: var(--light-text);
+    opacity: 0.8;
+}
+
+/* Custom Button Styles */
+.btn-primary {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+    color: var(--light-text) !important;
+}
+
+.btn-primary:hover {
+    background-color: #1a4675 !important;
+    border-color: #1a4675 !important;
+}
+
+.btn-outline-primary {
+    color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--primary-color) !important;
+    color: var(--light-text) !important;
+}
+
+/* Card Styles */
+.card {
+    background-color: #fff;
+    border: none;
+    box-shadow: 0 4px 6px rgba(3, 3, 3, 0.1);
+}
+
+.card-title {
+    color: var(--primary-color);
+}
+
+/* List Group */
+.list-group-item.active {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+}
+
+.list-group-item-action:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Progress Bars */
+.progress-bar {
+    background-color: var(--primary-color);
+}
+
+/* Table Styles */
+.table {
+    background-color: #fff;
+}
+
+.table thead th {
+    background-color: var(--primary-color);
+    color: var(--light-text);
+}
+
+/* Badge Styles */
+.badge.bg-primary {
+    background-color: var(--primary-color) !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+    
+    .hero-section {
+        padding: 50px 0;
+    }
+}
+
+/* Custom Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-out;
+} 

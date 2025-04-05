@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Course Recommendations</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #e0e0e0; /* Slightly darker background */
+      }
+      .course-container {
+        width: 80%;
+        max-width: 600px;
+        padding: 20px;
+        background: #343a40; /* Darker container background */
+        border-radius: 12px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        color: white;
+      }
+      h2 {
+        color: #f8f9fa;
+      }
+      .course-list {
+        list-style: none;
+        padding: 0;
+      }
+      .course-list li {
+        background: #00509e; /* Darker blue */
+        color: white;
+        padding: 12px;
+        margin: 10px 0;
+        border-radius: 8px;
+      }
+      a {
+        text-decoration: none;
+        color: white;
+        font-weight: bold;
+      }
+      button {
+        padding: 12px 24px;
+        font-size: 18px;
+        border: none;
+        background-color: #004080; /* Even darker blue */
+        color: white;
+        cursor: pointer;
+        border-radius: 25px; /* More rounded button */
+        margin-top: 15px;
+      }
+      button:hover {
+        background-color: #002d62;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="course-container">
+      <h2>Recommended AI Courses</h2>
+      <ul class="course-list">
+        <li>
+          <a
+            href="https://www.coursera.org/specializations/machine-learning"
+            target="_blank"
+            >Machine Learning - Coursera</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://www.udacity.com/course/intro-to-artificial-intelligence--cs271"
+            target="_blank"
+            >Intro to AI - Udacity</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://www.edx.org/course/artificial-intelligence"
+            target="_blank"
+            >AI Fundamentals - edX</a
+          >
+        </li>
+        <li>
+          <a href="https://www.fast.ai/" target="_blank"
+            >Deep Learning - Fast.ai</a
+          >
+        </li>
+      </ul>
+      <button onclick="window.history.back()">Back</button>
+    </div>
+    <script>
+          if (messageText.toLowerCase().includes("recommend")) {
+        const data = await getRecommendations("student1"); // Change to dynamic if needed
+        const messagesContainer = document.getElementById("chatbox-messages");
+
+        if (data.error) {
+          messagesContainer.innerHTML += `<p><strong>Instructor:</strong> ${data.error}</p>`;
+        } else {
+          const recommendations = data.map(course => `• ${course.name} by ${course.instructor}`).join("<br>");
+          messagesContainer.innerHTML += `<p><strong>Instructor:</strong> Based on your interests, I recommend:<br>${recommendations}</p>`;
+        }
+
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      }
+    </script>
+  </body>
+</html>

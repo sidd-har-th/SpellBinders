@@ -1,0 +1,16 @@
+[
+    {
+      "course_id": 3,
+      "name": "Deep Learning Specialization",
+      "instructor": "Andrew Ng",
+      "matching_tags": ["AI"],
+      "level": "advanced"
+    },
+    {
+      "course_id": 5,
+      "name": "Blockchain Basics",
+      "instructor": "Don Tapscott",
+      "matching_tags": [],
+      "level": "intermediate"
+    }
+  ]
